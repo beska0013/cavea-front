@@ -75,7 +75,8 @@
               "browserTarget": "cavea-front:build:production"
             },
             "development": {
-              "browserTarget": "cavea-front:build:development"
+              "browserTarget": "cavea-front:build:development",
+              "proxyConfig": "src/proxy.config.json"
             }
           },
           "defaultConfiguration": "development"
