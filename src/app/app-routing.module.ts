@@ -4,7 +4,12 @@ import {InventoryResolver} from "./resolver/inventory.resolver";
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
+    redirectTo: 'inventory',
+    pathMatch: 'full'
+  },
+  {
+    path:'inventory',
     loadComponent: () => import('./components/inventory/inventory.component').then(m => m.InventoryComponent),
     resolve: { inventories: InventoryResolver },
   },

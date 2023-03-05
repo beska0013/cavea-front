@@ -68,7 +68,7 @@ import {tap} from "rxjs";
 
 })
 export class AddInventoryComponent implements OnInit {
-
+//TODO refactor require
   constructor( private srvCrud: CrudService) { }
 
   addInventoryItemFm = new FormGroup({
@@ -119,7 +119,7 @@ export class AddInventoryComponent implements OnInit {
     }
   }
 
-  convertCsvToArray(csvData: string): InventoryItem[] {
+  private convertCsvToArray(csvData: string): InventoryItem[] {
     const lines = csvData.split('\n');
     const result = [];
     const headers = lines[0].split(',');
