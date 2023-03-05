@@ -1,10 +1,10 @@
 import {
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   EventEmitter,
-  Input,
+  Input, OnChanges,
   OnInit,
-  Output,
+  Output, SimpleChanges,
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from "@angular/forms";
@@ -71,10 +71,12 @@ import {map, Observable} from "rxjs";
   `,
 
 })
-export class InventoryNavUiComponent implements OnInit{
+export class InventoryNavUiComponent implements OnInit, OnChanges{
 
   constructor(
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+
+    private cdr: ChangeDetectorRef
   ) {}
 
   @Input() locations: string[] = [];
@@ -100,10 +102,16 @@ export class InventoryNavUiComponent implements OnInit{
 
   pageNumbers:number[] = [];
 
-  ngOnInit(): void {
-    this.resetPagination();
-    this.setCurrentPage(this.firstPageNum)
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (
+        changes['listItemsCount'] && changes['listItemsCount'].currentValue ||
+        changes['itemsPerPage'] && changes['itemsPerPage'].currentValue
+    ){
+      this.resetPagination();
+    }
   }
+  ngOnInit(): void {}
 
 
   onPagequeryParamsChange(pageNumBTn?: number):Observable<boolean>{
@@ -124,11 +132,9 @@ export class InventoryNavUiComponent implements OnInit{
   onLocationChange(event: string) {
     this.currentPage = this.firstPageNum;
     this.selectedOption = event;
-    this.resetPagination();
     return this.defaultOption === this.selectedOption ?
       this.locationChange.emit('') :
       this.locationChange.emit(event);
-
   }
 
   private calcLastPageNumber(){
@@ -149,8 +155,10 @@ export class InventoryNavUiComponent implements OnInit{
   private resetPagination(){
     this.lastPageNum = this.calcLastPageNumber();
     this.pageNumbers = this.calcVisiblePageNumbers();
-
+    this.cdr.markForCheck();
   }
+
+
 
 
 }

@@ -1,16 +1,17 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {RouterLinkActive, RouterLinkWithHref} from "@angular/router";
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ActivatedRoute, RouterLinkActive, RouterLinkWithHref} from "@angular/router";
+import {AsyncPipe} from "@angular/common";
 
 @Component({
   selector: 'app-app-nav-ui',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-
       <div class="container d-flex align-items-start justify-content-start gap-3">
         <a [routerLink]="'/inventory'"
-           [queryParams]="{location: '', page: '1'}"
+           [queryParams]="queryParams | async"
            routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: false}"
            type="button"
            class="btn btn-dark">ნივთების სია</a>
         <a [routerLink]="'/add'"
@@ -22,14 +23,15 @@ import {RouterLinkActive, RouterLinkWithHref} from "@angular/router";
 
   imports: [
     RouterLinkWithHref,
-    RouterLinkActive
+    RouterLinkActive,
+    AsyncPipe
   ]
 })
-export class AppNavUiComponent implements OnInit {
+export class AppNavUiComponent{
 
-  constructor() { }
+  constructor(private activeRouter: ActivatedRoute) { }
 
-  ngOnInit(): void {
-  }
+  queryParams = this.activeRouter.queryParams;
+
 
 }

@@ -21,7 +21,6 @@ export class UtilsService {
 
   trackByFn = (index: number, item: any) => item;
   updateInventoryQueryParam(location:string = '', page:number = 1) {
-    console.log(location);
     const queryParams = { ...this.activeRoute.snapshot.queryParams } as { location: string, page: number };
     queryParams.page = page;
     queryParams.location = location;

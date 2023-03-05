@@ -50,29 +50,28 @@ export class InventoryComponent implements OnInit {
   $$rows = new BehaviorSubject<InventoryItem[]>([]);
   $$limit = new BehaviorSubject<number>(0);
   $$count = new BehaviorSubject<number>(0);
+
   ngOnInit(): void {
-   this.updateDataRows(this.data);
-    console.log(this.data);
+    this.updateDataRows(this.data)
+    this.utilSrv.updateInventoryQueryParam().then()
   }
 
   onDeleteItem(itemId:number){
     const lastUpdatedItem = Math.min(... this.data.rows.map(item => item.updatedAt));
-
     this.srvCrud.deleteInventoryById(itemId, lastUpdatedItem)
       .pipe(
         tap((res:DeleteInventoryItemResponseType) =>{
-          console.log(res);
-          this.data.rows = [...this.data.rows.filter(item => item.id !== res.deleted_id), res.next_item]
-          this.data.count -= res.count;
+          this.data.rows = !! res.next_item ?
+                              [...this.data.rows.filter(item => item.id !== res.deleted_id), res.next_item]:
+                              this.data.rows.filter(item => item.id !== res.deleted_id);
+            this.data.count -= res.count;
           this.updateDataRows(this.data);
         })
       ).subscribe()
   }
 
   onLocationChange(location:string){
-    return !!location ?
-      this.getFilteredInventoryData(location) :
-      this.getFilteredInventoryData()
+    return this.getFilteredInventoryData(location)
   }
 
   onPageChange(pageNum:number){
@@ -80,12 +79,11 @@ export class InventoryComponent implements OnInit {
   }
 
   getFilteredInventoryData(location = '' ){
-    console.log(location);
     return this.srvCrud.getInventories(location)
       .pipe(
         tap((res: GetInventoryItemResponse) => {
-          this.updateDataRows(res)
-          return this.utilSrv.updateInventoryQueryParam(location, 1)
+          this.updateDataRows(res);
+          return this.utilSrv.updateInventoryQueryParam(location)
         })
       ).subscribe()
   }
@@ -94,7 +92,7 @@ export class InventoryComponent implements OnInit {
     const locationQuery = this.activeRoute.snapshot.queryParams['location'];
     return this.srvCrud.getInventories(locationQuery, pageNum)
       .pipe(
-        tap((res: GetInventoryItemResponse) =>{
+        tap((res: GetInventoryItemResponse) => {
           this.updateDataRows(res)
           return this.utilSrv.updateInventoryQueryParam(locationQuery, pageNum)
         })
