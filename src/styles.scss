@@ -12,6 +12,16 @@ header{
 main{
   height: calc(100vh - $header-height)
 }
+
+.custom-scrol{
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: #e7e0f369;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #A335C7;
+  }
+}
 .fade-in{
   animation: fade-in .3s ease-in-out;
 }

@@ -15,16 +15,17 @@ import {InventoryItem} from "../../../types/inventoryItem.type";
   template: `
 
     <section class="container d-flex align-items-center justify-content-start flex-column gap-3 h-100">
-      <div class="w-100 border border-1 border-light rounded shadow p-3">
-        <select class="form-select" aria-label="Default select example">
+
+        <select class="form-select  border border-1 border-light rounded shadow" aria-label="Default select example">
           <option selected>Open this select menu</option>
           <option value="1">One</option>
           <option value="2">Two</option>
           <option value="3">Three</option>
         </select>
-      </div>
+
       <app-inventory-list-ui [inventoryList]="$$rows | async"
-                             (deleteItem)="onDeleteItem($event)"></app-inventory-list-ui>
+                             (deleteItem)="onDeleteItem($event)"
+                             class="w-100 h-100 overflow-hidden rounded shadow"></app-inventory-list-ui>
     </section>
   `,
 
