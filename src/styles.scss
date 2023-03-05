@@ -17,6 +17,10 @@ select{
   cursor: pointer;
 }
 
+p{
+  min-height: 22px;
+}
+
 .custom-scrol{
   &::-webkit-scrollbar {
     width: 4px;

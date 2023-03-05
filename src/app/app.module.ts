@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {AppNavUiComponent} from "./component-ui/app-nav-ui/app-nav-ui.component";
+
+
 
 
 @NgModule({
@@ -16,8 +17,10 @@ import {AppNavUiComponent} from "./component-ui/app-nav-ui/app-nav-ui.component"
     AppRoutingModule,
     HttpClientModule,
     AppNavUiComponent,
+
   ],
   providers: [],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,4 +27,7 @@ export class UtilsService {
     queryParams.location = location;
     return this.router.navigate([], { queryParams, replaceUrl: true });
   }
+
+
+
 }
