@@ -1,1 +1,31 @@
-//@import "~bootstrap/dist/css/bootstrap.css";
+
+
+body{
+  overflow: hidden;
+}
+$header-height:55px;
+
+
+header{
+  height: $header-height;
+}
+main{
+  height: calc(100vh - $header-height)
+}
+.fade-in{
+  animation: fade-in .3s ease-in-out;
+}
+
+@keyframes fade-in {
+  from{
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 25%;
+  }
+  to{
+    opacity: 1;
+    visibility: visible;
+    translate: 0 0;
+  }
+
+}

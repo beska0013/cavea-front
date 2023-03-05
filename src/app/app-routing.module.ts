@@ -6,7 +6,11 @@ const routes: Routes = [
   {
     path:'',
     loadComponent: () => import('./components/inventory/inventory.component').then(m => m.InventoryComponent),
-    resolve: { inventoreis: InventoryResolver },
+    resolve: { inventories: InventoryResolver },
+  },
+  {
+    path: 'add',
+    loadComponent: () => import('./components/add-inventory/add-inventory.component').then(m => m.AddInventoryComponent),
   }
 
 ];

@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-pagination',
+  selector: 'app-inventory-control-ui',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss']
+  templateUrl: './inventory-control-ui.component.html',
+  styleUrls: ['./inventory-control-ui.component.scss']
 })
-export class PaginationComponent implements OnInit {
+export class InventoryControlUiComponent implements OnInit {
 
   constructor() { }
 
