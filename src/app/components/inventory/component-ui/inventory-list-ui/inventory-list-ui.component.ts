@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component, ElementRef,
   EventEmitter,
@@ -45,7 +44,7 @@ import {UtilsService} from "../../../../utils/utils.service";
   `,
 
 })
-export class InventoryListUiComponent implements AfterViewInit {
+export class InventoryListUiComponent  {
 
   constructor(private utilSrv: UtilsService) { }
 
@@ -62,11 +61,6 @@ export class InventoryListUiComponent implements AfterViewInit {
     'ოპერაციები'
   ]
   delete_itemText = 'წაშლა';
-
-
-  ngAfterViewInit(): void {
-    console.log(this.inventoryList);
-  }
 
   trackItems = this.utilSrv.trackByFn;
 

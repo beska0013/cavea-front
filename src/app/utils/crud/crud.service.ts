@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {InventoryItem} from "../../../types/inventoryItem.type";
 import {Observable} from "rxjs";
+import {GetInventoryItemResponse} from "../../../types/inventoryItemResponse.type";
+import {DeleteInventoryItemResponseType} from "../../../types/DeleteInventoryItemResponse.type";
 
 
 @Injectable({
@@ -22,16 +24,16 @@ export class CrudService {
 
   getInventories(location = '', page = 1){
     const url = this.createGetQuerry(location, page)
-    return this.http.get(url) as Observable<{rows:InventoryItem[], total:number}>
+    return this.http.get(url) as Observable<GetInventoryItemResponse>
   }
 
   addInventoryItem(items:InventoryItem[]){
     return this.http.post(environment.api.inventory, items)
   }
 
-  deleteInventoryById(id:number, lastItemId:number){
+  deleteInventoryById(id:number, lastItemId:number):Observable<DeleteInventoryItemResponseType>{
     const url = `${environment.api.inventory}/${id}`;
-    return this.http.delete(url,{body: {id:lastItemId}})
+    return this.http.delete(url,{body: {id:lastItemId}}) as Observable<DeleteInventoryItemResponseType>
   }
 
  private createGetQuerry(location:string, page:number){
