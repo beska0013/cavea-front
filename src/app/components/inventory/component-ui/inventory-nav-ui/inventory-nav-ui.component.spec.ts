@@ -8,7 +8,7 @@ describe('InventoryNavUiComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InventoryNavUiComponent ]
+      imports: [ InventoryNavUiComponent ]
     })
     .compileComponents();
 

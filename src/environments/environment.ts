@@ -8,6 +8,7 @@ export const environment = {
   production: false,
   api:{
     inventory: `${endpoint}/inventory`,
+    locations: `${endpoint}/inventory/locations`
   }
 
 };

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaginationUiComponent } from './pagination-ui.component';
+import { AppNavUiComponent } from './app-nav-ui.component';
 
-describe('PaginationUiComponent', () => {
-  let component: PaginationUiComponent;
-  let fixture: ComponentFixture<PaginationUiComponent>;
+describe('InventoryNavUiComponent', () => {
+  let component: AppNavUiComponent;
+  let fixture: ComponentFixture<AppNavUiComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ PaginationUiComponent ]
+      declarations: [ AppNavUiComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PaginationUiComponent);
+    fixture = TestBed.createComponent(AppNavUiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

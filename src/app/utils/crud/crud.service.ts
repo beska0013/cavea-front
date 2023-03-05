@@ -2,17 +2,27 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {InventoryItem} from "../../../types/inventoryItem.type";
+import {Observable} from "rxjs";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudService {
 
-  constructor( private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+
+    ) { }
+
+
+  getAllLocations():Observable<string[]>{
+    return this.http.get(environment.api.locations) as Observable<string[]>
+  }
 
   getInventories(location = '', page = 1){
     const url = this.createGetQuerry(location, page)
-    return this.http.get(url)
+    return this.http.get(url) as Observable<{rows:InventoryItem[], total:number}>
   }
 
   addInventoryItem(items:InventoryItem[]){

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {InventoryResolver} from "./resolver/inventory.resolver";
+import {InventoryResolver} from "./resolver/inventory/inventory.resolver";
+import {LocationsResolver} from "./resolver/locations/locations.resolver";
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
   {
     path:'inventory',
     loadComponent: () => import('./components/inventory/inventory.component').then(m => m.InventoryComponent),
-    resolve: { inventories: InventoryResolver },
+    resolve: { inventories: InventoryResolver, locations: LocationsResolver },
   },
   {
     path: 'add',

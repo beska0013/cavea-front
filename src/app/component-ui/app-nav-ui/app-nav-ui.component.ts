@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {RouterLinkActive, RouterLinkWithHref} from "@angular/router";
 
 @Component({
-  selector: 'app-inventory-nav-ui',
+  selector: 'app-app-nav-ui',
   standalone: true,
-
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
 
       <div class="container d-flex align-items-start justify-content-start gap-3">
         <a [routerLink]="'/inventory'"
+           [queryParams]="{location: '', page: '1'}"
            routerLinkActive="active"
            type="button"
            class="btn btn-dark">ნივთების სია</a>
@@ -24,7 +25,7 @@ import {RouterLinkActive, RouterLinkWithHref} from "@angular/router";
     RouterLinkActive
   ]
 })
-export class InventoryNavUiComponent implements OnInit {
+export class AppNavUiComponent implements OnInit {
 
   constructor() { }
 

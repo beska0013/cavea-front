@@ -4,12 +4,12 @@ import {
   Component, ElementRef,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   ViewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {InventoryItem} from "../../../../../types/inventoryItem.type";
+import {UtilsService} from "../../../../utils/utils.service";
 
 @Component({
   selector: 'app-inventory-list-ui',
@@ -28,8 +28,8 @@ import {InventoryItem} from "../../../../../types/inventoryItem.type";
 
         <tbody>
 
-        <tr *ngFor="let item of list;index as i" >
-          <th scope="row">{{i}}</th>
+        <tr *ngFor="let item of list;index as i;trackBy:trackItems" >
+          <th scope="row">{{item.id}}</th>
           <td>{{item.name}}</td>
           <td>{{item.location}}</td>
           <td>{{item.price}}</td>
@@ -47,7 +47,7 @@ import {InventoryItem} from "../../../../../types/inventoryItem.type";
 })
 export class InventoryListUiComponent implements AfterViewInit {
 
-  constructor() { }
+  constructor(private utilSrv: UtilsService) { }
 
   @ViewChild('tbContainerEl') tbContainerEl!: ElementRef;
   @ViewChild('tbHeadEL') tbHeadEl!: ElementRef;
@@ -66,17 +66,9 @@ export class InventoryListUiComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     console.log(this.inventoryList);
-    this.tbHeaderUI();
   }
 
-  private tbHeaderUI(){
-    const tbHeader = this.tbHeadEl.nativeElement;
-    const tb = this.tbContainerEl.nativeElement.querySelector('table');
-    const tbContainer = this.tbContainerEl.nativeElement;
-    if(tbContainer && tbHeader && tb){
-      // tbContainer.insertBefore(tbHeader, tb)
-    }
-  }
+  trackItems = this.utilSrv.trackByFn;
 
   onDelete(itemId:number){
     this.deleteItem.emit(itemId)
