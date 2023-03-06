@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UploadCSVFmUiComponent } from './upload-csv-fm-ui.component';
+import { UnknownComponent } from './unknown.component';
 
-describe('UploadCSVFmUiComponent', () => {
-  let component: UploadCSVFmUiComponent;
-  let fixture: ComponentFixture<UploadCSVFmUiComponent>;
+describe('UnknownComponent', () => {
+  let component: UnknownComponent;
+  let fixture: ComponentFixture<UnknownComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UploadCSVFmUiComponent ]
+      imports: [ UnknownComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UploadCSVFmUiComponent);
+    fixture = TestBed.createComponent(UnknownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

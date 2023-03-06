@@ -33,5 +33,4 @@ export class AppNavUiComponent{
 
   queryParams = this.activeRouter.queryParams;
 
-
 }

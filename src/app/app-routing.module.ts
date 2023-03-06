@@ -18,7 +18,12 @@ const routes: Routes = [
     path: 'add',
     loadComponent: () => import('./components/add-inventory/add-inventory.component').then(m => m.AddInventoryComponent),
     resolve: { locations: LocationsResolver }
+  },
+  {
+    path: '**',
+    loadComponent: () => import('./components/unknown/unknown.component').then(m => m.UnknownComponent)
   }
+
 
 ];
 

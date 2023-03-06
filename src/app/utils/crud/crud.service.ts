@@ -14,31 +14,30 @@ export class CrudService {
 
   constructor(
     private http: HttpClient,
+  ) {
+  }
 
-    ) { }
-
-
-  getAllLocations():Observable<string[]>{
+  getAllLocations(): Observable<string[]> {
     return this.http.get(environment.api.locations) as Observable<string[]>
   }
 
-  getInventories(location = '', page = 1){
+  getInventories(location = '', page = 1) {
     const url = this.createGetQuerry(location, page)
     return this.http.get(url) as Observable<GetInventoryItemResponse>
   }
 
-  addInventoryItem(items:InventoryItem[]){
+  addInventoryItem(items: InventoryItem[]) {
     return this.http.post(environment.api.inventory, items)
   }
 
-  deleteInventoryById(id:number, lastItemId:number):Observable<DeleteInventoryItemResponseType>{
+  deleteInventoryById(id: number, lastItemId: number): Observable<DeleteInventoryItemResponseType> {
     const url = `${environment.api.inventory}/${id}`;
-    return this.http.delete(url,{body: {id:lastItemId}}) as Observable<DeleteInventoryItemResponseType>
+    return this.http.delete(url, {body: {id: lastItemId}}) as Observable<DeleteInventoryItemResponseType>
   }
 
- private createGetQuerry(location:string, page:number){
+  private createGetQuerry(location: string, page: number) {
     const locationQuery = location ? `location=${location}` : 'location';
-    const pageQuery = `page=${page}` ;
+    const pageQuery = `page=${page}`;
     return `${environment.api.inventory}?${locationQuery}&${pageQuery}`
- }
+  }
 }

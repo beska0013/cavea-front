@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input, OnChanges,
-  OnInit,
   Output, SimpleChanges,
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
@@ -71,7 +70,7 @@ import {map, Observable} from "rxjs";
   `,
 
 })
-export class InventoryNavUiComponent implements OnInit, OnChanges{
+export class InventoryNavUiComponent implements OnChanges{
 
   constructor(
     private router: ActivatedRoute,
@@ -111,8 +110,6 @@ export class InventoryNavUiComponent implements OnInit, OnChanges{
       this.resetPagination();
     }
   }
-  ngOnInit(): void {}
-
 
   onPagequeryParamsChange(pageNumBTn?: number):Observable<boolean>{
     return this.router.queryParams

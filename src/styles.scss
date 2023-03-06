@@ -21,6 +21,22 @@ p{
   min-height: 22px;
 }
 
+.upload-file{
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-image: url('./assets/images/upload-file.svg');
+  filter: opacity(0.1);
+}
+
+.new-file{
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-image: url('./assets/images/new-file.svg');
+  filter: opacity(0.3);
+}
+
 .custom-scrol{
   &::-webkit-scrollbar {
     width: 4px;
